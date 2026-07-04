@@ -1,5 +1,7 @@
 # Execution Plan
 
+> **🔴 범위 개정 (2026-07-04)**: 사용자 결정으로 **산출물 범위를 "설계 문서화"로 한정**한다. **Code Generation·Build and Test 단계는 실행하지 않는다**(옵션 B). 각 유닛의 설계 4단계(Functional Design → NFR Requirements → NFR Design → Infrastructure Design)까지만 생성해 U1~U8 전 유닛의 설계 문서를 완성하는 것이 최종 목표다. U1 Code Generation Part 1 계획(u1-foundation-code-generation-plan.md)은 작성됐으나 **Part 2(코드 생성)는 미실행**으로 종결. CLAUDE.md의 "Code Generation ALWAYS execute" 기본값을 사용자 권한으로 오버라이드함.
+
 > **생성일**: 2026-07-04 · **입력**: requirements.md(D01~D38, Δ1~Δ10, N1~N8) + stories.md(128 스토리) + personas.md
 
 ## Detailed Analysis Summary

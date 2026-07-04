@@ -4,7 +4,8 @@
 - **Project Type**: Greenfield
 - **Project Name**: TripPilot (B2C 여행자 슈퍼앱)
 - **Start Date**: 2026-07-03T10:05:39Z
-- **Current Stage**: CONSTRUCTION - U1 설계 4단계 완료 (Code Generation 진입 승인 대기)
+- **Current Stage**: ✅ 문서화 범위 목표 완수 — INCEPTION 전체 + U1~U8 설계 문서 + U4 정합성 정리 완료 (코드 생성·Build&Test는 범위 제외 미실행)
+- **⚠️ 산출물 범위 (2026-07-04 사용자 결정)**: 문서화만 — Code Generation·Build and Test 미실행. U1~U8 전 유닛의 설계 4단계 문서 완성이 목표. U1 코드 생성 Part 2 미실행 종결.
 
 ## Workspace State
 - **Existing Code**: No
@@ -54,13 +55,24 @@
 - [x] **INCEPTION PHASE ✅ 전체 완료**
 
 ### 🟢 CONSTRUCTION PHASE (유닛 순서: U1→U2→U3→U4→U5→U6→U7→U8)
-- [ ] U1 기반·계정·온보딩 (E1, 18 스토리) — 설계 완료, 코드 생성 게이트
+- [x] U1 기반·계정·온보딩 (E1, 18 스토리) — **설계 문서 완료** ✅ (코드 생성 제외)
   - [x] Functional Design (5종 1,230줄 — 엔티티·규칙 BR-U1·플로우·PBT 속성 17·프론트 컴포넌트)
   - [x] NFR Requirements (474줄 — SECURITY-12 전개·기술 스택 라이브러리 수준 확정)
-  - [x] GATE: 전역 질문 7문항 전부 A (2026-07-04 — AWS·경량 변경관리·GitHub Actions·버전 재배포·롤링·경량 IR·복원력 테스트 이연)
-  - [x] NFR Design (596줄 — 패턴 16종·논리 컴포넌트 LC-1~10·운영 프로세스 정본 OPS-01~03, RESILIENCY-03/04/14/15 해소)
-  - [x] Infrastructure Design (626줄 — **shared-infrastructure.md 공유 정본**: ECS Fargate·Terraform·RDS Multi-AZ·법정 로그 PG append-only+권한 2중 강제, NFR 미결 PD-1~9 전건 종결)
-  - [ ] ⛔ GATE: U1 설계 4단계 묶음 승인 → Code Generation (Part 1 계획 + Part 2 생성)
+  - [x] 전역 질문 7문항 전부 A (AWS·경량 변경관리·GitHub Actions·버전 재배포·롤링·경량 IR·복원력 테스트 이연 — U2~U8 재사용)
+  - [x] NFR Design (596줄 — 패턴 16종·LC-1~10·OPS-01~03, RESILIENCY-03/04/14/15 해소)
+  - [x] Infrastructure Design (626줄 — shared-infrastructure.md 공유 정본, PD-1~9 종결)
+  - [x] Code Generation Part 1 계획 작성 (참조 보존) / Part 2 미실행 (문서화 범위)
+- [x] U2 앱 셸·홈·내비게이션 (E2, 6) — **설계 문서 완료** ✅ (Functional 4파일·PBT 5 / NFR Req·Design·Infra 5파일, 전역 정본 상속·증분만)
+- [x] U3 숙소·장소 (E3, 11) — **설계 문서 완료** ✅ (Functional 5파일·엔티티 12·PBT 9 / NFR·Infra 5파일 — 캐시 인메모리 Caffeine·외부 어댑터 Resilience4j·선결 P2/P4)
+- [x] U4 여행 생성·필수 방문지 (E4, 11) — **설계 문서 완료** ✅ (Functional 5파일·PBT 6 / NFR·Infra 5파일 — daterange+btree_gist EXCLUDE·예산 파생·신규 AWS 리소스 0)
+  - ⚠️ 교차 검증(팀 공유 전): 치명 0·경고 3(W1 SavedPoi↔SavedPlace 명칭·W2 스마트 기본 거점 소유권·W3 BR-U4-21 스토리 오인용)·경미 11 — **최종 정리 패스에서 U3와 함께 배치 수정 예정(파킹)**
+- [x] U5 AI 일정 생성·확정 (E5, 12) — **설계 문서 완료** ✅ (Functional 5파일 엔티티11·규칙44·PBT12·C2 하드제약4계열 oracle / NFR·Infra 5파일 — LLM 게이트웨이 벤더중립 P6후주입·솔버 워커 미도입 CPU벌크헤드·SSE·신규 리소스0)
+- [x] U6 실행·Plan-B (E6+E7, 16) — **설계 문서 완료** ✅ (Functional 5파일 엔티티9·불변식79·규칙31·PBT11 / NFR·Infra 5파일 — 기상청 WeatherPort·트리거 침묵·ShedLock 폴링·위치 포그라운드·TriggerFired 발행만)
+- [x] U7 기록·회고 (E8, 14) — **설계 문서 완료** ✅ (Functional 5파일 엔티티10·규칙28·PBT8·changelog 재구성 오라클 / NFR·Infra 5파일 — S3 사진 버킷+CloudFront 신규 리소스 첫 발생·EXIF 클라제거+서버재검증·서명 URL)
+- [x] U8 알림·마이페이지·설정 (E9, 14) — **설계 문서 완료** ✅ (Functional 5파일 엔티티11·규칙26·PBT8·삭제 연쇄 완전성 / NFR·Infra 5파일 — FCM 이중 파이프라인·삭제 연쇄 배치·전 유닛 인프라 총괄 부록·신규 리소스0)
+- [x] **🎉 U1~U8 전 유닛 설계 문서 완료 (문서화 범위 목표 달성)**
+- [x] 📌 최종 정리 패스 완료 (2026-07-04): U4 경고 3(W1 SavedPoi→SavedPlace·W2 스마트 기본 거점 소유권·W3 BR-U4-21 스토리 근거) + 경미(SI §4·CP2 로케이터·D37 라벨·D31→SECURITY-08·btree_gist 표기·plan 경로) 전건 해소. U4 SavedPoi 잔여 0·D31 오인용 0 검증 완료
+- [ ] ~~Build and Test~~ (문서화 범위 — 미실행)
 - [ ] U2 앱 셸·홈 (E2, 6) / U3 숙소·장소 (E3, 11) / U4 여행 생성 (E4, 11) / U5 일정 생성 (E5, 12) / U6 실행·Plan-B (E6+E7, 16) / U7 기록·회고 (E8, 14) / U8 알림·설정 (E9, 14)
 - [ ] Build and Test — EXECUTE (전 유닛 완료 후)
 

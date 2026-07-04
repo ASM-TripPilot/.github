@@ -184,3 +184,91 @@
 **Context**: CONSTRUCTION - U1, ⛔ Code Generation 진입 승인 대기
 
 ---
+
+## U1 — Code Generation 진입 승인 · Part 1 계획 생성
+**Timestamp**: 2026-07-04T09:00:00Z
+**User Input**: "지금 이어서 ㄱㄱ" (클라우드 예약 대신 로컬 즉시 진행 선택)
+**AI Response**: "U1 설계 4단계 승인 접수 → Code Generation 진입. 워크스페이스 루트 확인(/mnt/c/Users/박/Desktop/TripPilot/aidlc/ — server/·apps/ 미존재, 신규 스캐폴드). Part 1 계획 생성: construction/plans/u1-foundation-code-generation-plan.md — 16단계(스캐폴드→서버 도메인·PBT→API·보안→리포지토리·아웃박스·법정 로그→모바일 온보딩→Flyway 마이그레이션→문서→CI/Terraform), 스토리 US-E1-01~18 추적, 확장 컴플라이언스 반영 지점 명시, Part 2는 4갈래 병렬 실행 예정. 계획 승인 대기(코드 생성 전 게이트)."
+**Context**: CONSTRUCTION - U1 Code Generation Part 1, ⛔ 계획 승인 대기
+
+---
+
+## 산출물 범위 확정 — 문서화만 (코드 생성 제외)
+**Timestamp**: 2026-07-04T09:30:00Z
+**User Input**: "우리 목표는 코드 작성 제외 문서화만 목표라 U2~U8까지 문서만 작성하면됨"
+**AI Response**: "산출물 범위를 '설계 문서화'로 확정(옵션 B). Code Generation Part 2·Build and Test 미실행으로 종결하고 CLAUDE.md 기본값을 사용자 권한으로 오버라이드. 반영: execution-plan.md 범위 개정 노트, u1-foundation-code-generation-plan.md 미실행 종결 표기, aidlc-state.md 범위·진행 갱신. U1 설계 문서는 완료 상태. 이제 U2~U8 각 유닛의 설계 4단계(Functional Design→NFR Requirements→NFR Design→Infrastructure Design)를 순차 생성 — Infra는 shared-infrastructure.md 정본이 있어 유닛별 증분만. U2(앱 셸·홈, 클라이언트 중심·경량)부터 병렬 에이전트로 착수."
+**Context**: CONSTRUCTION - 문서화 범위, U2 설계 착수
+
+---
+
+## U2 설계 완료 · U3 착수
+**Timestamp**: 2026-07-04T10:00:00Z
+**User Input**: (없음 — 문서화 범위 연속 실행)
+**AI Response**: "U2 설계 4단계 완료(Functional 4파일 PBT 5속성 + NFR Req/Design/Infra 5파일 — AppConfig 1엔티티·스플래시 순수함수·전역 정본 상속·신규 AWS 리소스 0). U3(숙소·장소 데이터, E3 11스토리 — M3 Search·M4 SavedStay·M5 Affiliate·M7 Place Data) 착수. 도메인 큰 유닛(canonical POI ID·하이브리드 캐싱 D13·외부 어댑터 카카오/TMap/TourAPI). 에이전트 2개 병렬(Functional Design / NFR+Infra)."
+**Context**: CONSTRUCTION - 문서화 범위, U3 설계 진행
+
+---
+
+## U3 설계 완료 · U4 착수
+**Timestamp**: 2026-07-04T11:00:00Z
+**User Input**: (없음 — 연속 실행)
+**AI Response**: "U3 설계 4단계 완료(Functional 5파일 엔티티 12·PBT 9 + NFR/Infra 5파일 — POI 정본 PostgreSQL·단기 캐시 Caffeine·외부 어댑터 Resilience4j 4요소·커버리지 게이트 G192·선결 P2/P4 명시). U4(여행 생성·필수 방문지, E4 11스토리 — M6 Trip Creation) 착수. 핵심: 여행 상태 머신(planned→confirmed→active→ended D19/D21)·예산 전체 총액 D26·시간창 G119·CP1 소비(U3 등록 숙소)·CP2 공급(U5 일정). 에이전트 2개 병렬."
+**Context**: CONSTRUCTION - 문서화 범위, U4 설계 진행
+
+---
+
+## U4 설계 완료 · 교차 검증 감사 (팀 공유 전)
+**Timestamp**: 2026-07-04T12:00:00Z
+**User Input**: "산출물 5개가 완성됐어. 이제 이 U4 유닛의 산출물을 팀에게 공유하기 전에, 다른 유닛(U1·U2·U3)과의 정합성·추적성이 깨진 곳이 없는지 교차 검증해줘. (1) CP1 계약 실재·방향·명칭 (2) 전역 정본 ID 실재/오인용 (3) SI '추가 없음' vs 인프라 증분 모순 — 심각도 분류 보고"
+**AI Response**: "U4 산출물 10개(Functional 5 + NFR/Infra 5) 완료 확인. 3축 병렬 감사 에이전트 실행 결과 종합 — 치명 0. 축1 CP1: 경고 2(SavedPoi↔SavedPlace 명칭, 스마트 기본 거점 소유권 중복)+경미 3. 축2 인용(94개 ID 전수 대조, 허위·범위밖 0): 경고 1(BR-U4-21이 US-E09-07 오인용 — 실제 삭제 근거는 US-E09-09/D18)+경미 4(SI §4 캐시 오표기·CP2 §125 로케이터·D37 라벨·D31 연결). 축3 인프라: 치명/경고 0+경미 3(SI '추가 없음(기존 컴퓨트·DB)' 스코프 한정으로 btree_gist·5테이블·신규 리소스0 일관). 추가 자체 관찰: U4 functional-design-plan 경로 불일치(u4-trip/plans/ vs 타 유닛 construction/plans/). 합계 치명0·경고3·경미11. 설계 차단 없음 — 경고 3건은 팀 공유 전 수정 권고."
+**Context**: CONSTRUCTION - U4 교차 검증 완료, 수정 여부 사용자 판단 대기
+
+---
+
+## U4 검증 파킹 · U5 착수
+**Timestamp**: 2026-07-04T12:30:00Z
+**User Input**: "나머지 5-8은?"
+**AI Response**: "U4 경고 3+경미 11은 최종 정리 패스로 파킹(U3 연관 수정 포함 배치 처리). U5(AI 일정 생성·확정, E5 12스토리 — M8 Itinerary Generation+C1 LLM Gateway+C2 Solver Engine, 최중량 유닛) 착수. 핵심: 솔버 하드 제약·LLM 점수·생성 3방식·확정 상태 머신(plan 동결 D14·재확정 D20)·성능 5초/20초 D38. 에이전트 2개 병렬(Functional / NFR+Infra). 이후 U6→U7→U8 순차."
+**Context**: CONSTRUCTION - 문서화 범위, U5 설계 진행
+
+---
+
+## U5 설계 완료 · U6 착수
+**Timestamp**: 2026-07-04T13:30:00Z
+**User Input**: (없음 — 연속 실행)
+**AI Response**: "U5 설계 4단계 완료(Functional 5파일 엔티티11·규칙44·PBT12 + NFR/Infra 5파일 735줄). U6(여행 중 실행·Plan-B, E6+E7 16스토리 — M18 Trip Execution+M9 Detection+M10 Recalculation+M11 Weather) 착수. 핵심: 도착 확인 프롬프트 D23·여행 종료 D19·자동 트리거 하이브리드 D27·기상청 D10·재계획 10초 D38·당일 잔여 재정렬 C10·휴식 모드 G54·CP3 소비(U5 일정)·CP4 공급(U7 이벤트). 에이전트 2개 병렬."
+**Context**: CONSTRUCTION - 문서화 범위, U6 설계 진행
+
+---
+
+## U6 설계 완료 · U7 착수
+**Timestamp**: 2026-07-04T14:30:00Z
+**User Input**: (없음 — 연속 실행)
+**AI Response**: "U6 설계 4단계 완료(Functional 5파일 1,292줄 엔티티9·불변식79·규칙31·PBT11 + NFR/Infra 5파일). U7(기록·회고, E8 14스토리 — M12 Travel Archive+M13 AI Reflection) 착수. 핵심: actual·changelog 통합 스키마 G132·plan/actual 대조 D14·사진 파이프라인(S3+CloudFront 신규 인프라·클라 압축·EXIF 제거 G185·오프라인 큐 G74)·회고 LLM(C1 재사용·폴백)·스타일 분석 10곳 게이트·CP4 소비(U6 이벤트)·CP5 공급(ReflectionReady). 에이전트 2개 병렬."
+**Context**: CONSTRUCTION - 문서화 범위, U7 설계 진행
+
+---
+
+## U7 설계 완료 · U8(마감 유닛) 착수
+**Timestamp**: 2026-07-04T15:30:00Z
+**User Input**: (없음 — 연속 실행)
+**AI Response**: "U7 설계 4단계 완료(Functional 5파일 엔티티10·규칙28·PBT8 + NFR/Infra 5파일 — S3+CloudFront 신규 리소스 첫 발생). U8(알림·마이페이지·설정, E9 14스토리 — M14 Notification) 착수. 핵심: FCM D12·SES·서버 스케줄링 D32·방해금지 G100·인앱 알림함 90일·계정 삭제 연쇄 S6/D18·마케팅 토글 N8·데이터 내보내기·위치 3층 설정·고객지원 N5·홈 카드 최종 통합·CP5 소비(U3/U5/U6/U7 이벤트 전체). 마감 유닛 — 전 유닛 통합. 에이전트 2개 병렬. 완료 후 최종 정리 패스(U4 경고 3+경미 배치 수정)·완료 요약 예정."
+**Context**: CONSTRUCTION - 문서화 범위, U8 설계 진행
+
+---
+
+## U8 완료 · 전 유닛 설계 문서 달성 · 최종 정리 패스
+**Timestamp**: 2026-07-04T16:30:00Z
+**User Input**: (없음 — 연속 실행)
+**AI Response**: "U8 설계 4단계 완료로 U1~U8 전 유닛 설계 문서 달성(문서화 범위 목표 완수). 집계: construction 86개 .md·15,641줄(유닛 8 × 설계 4단계 + shared-infrastructure.md + plans 19). 최종 정리 패스 착수: (1) U4 plan 경로 정규화(u4-trip/plans → construction/plans, 경미 해소) 완료, (2) U4 정합성 수정 에이전트 — W1(SavedPoi→SavedPlace 명칭)·W2(스마트 기본 거점 소유권 문구 U3 현실 정렬)·W3(BR-U4-21 US-E09-07→US-E09-09/D18)·경미 인용 5건. 코드 생성·Build&Test는 문서화 범위로 미실행 종결."
+**Context**: CONSTRUCTION - 전 유닛 설계 완료, U4 정합성 수정 진행 중
+
+---
+
+## 최종 정리 패스 완료 — 문서화 범위 목표 완수
+**Timestamp**: 2026-07-04T17:00:00Z
+**User Input**: (없음 — 연속 실행)
+**AI Response**: "U4 정합성 수정 에이전트 18건 + 잔여 2건(frontend-components.md SavedPoi 5곳·컴포넌트명, nfr-design-patterns.md D31 2곳) 직접 sed 정정 완료. 최종 검증: U4 전체 SavedPoi 잔여 0·소유권 D31 오인용 0·plan 경로 construction/plans 통일. 경고 W1/W2/W3 + 경미 전건 해소. 🎉 문서화 범위 목표 완수 — INCEPTION 전체 + CONSTRUCTION U1~U8 설계 4단계(86 .md·15,641줄) + 교차 검증·정리. 코드 생성·Build&Test는 사용자 범위 결정으로 미실행 종결(U1 코드 생성 계획서는 참조 보존)."
+**Context**: ✅ 문서화 목표 완수
+
+---
