@@ -64,3 +64,123 @@
 **Context**: INCEPTION - Requirements Analysis Step 9, ⛔ 승인 대기 (변동 없음)
 
 ---
+
+## Requirements Analysis — 승인 · User Stories 단계 포함 결정
+**Timestamp**: 2026-07-04T01:00:00Z
+**User Input**: "승인 user stories도 하자"
+**AI Response**: "requirements.md 승인 접수 — Requirements Analysis 단계 완료 처리(§7 제안 기본값 ~90건 포함 확정). 사용자가 스킵 권고를 오버라이드하여 User Stories 단계 포함 결정. aidlc-state.md 갱신 후 User Stories 단계(Part 1 Planning) 시작."
+**Context**: INCEPTION - Requirements Analysis 완료 → User Stories 단계 진입
+
+---
+
+## User Stories — Part 1 Planning 산출물 생성
+**Timestamp**: 2026-07-04T01:20:00Z
+**User Input**: (없음 — 단계 진입 연속 실행)
+**AI Response**: "Step 1 평가 완료(High Priority 3종 충족 + 사용자 명시 요청) → plans/user-stories-assessment.md 생성. Step 2~6 스토리 계획 생성 → plans/story-generation-plan.md (실행 체크리스트 + 질문 6개: ①스토리 범위(전체+태깅/1차만), ②재작성 수준(표준 형식/델타 이관/요약 참조), ③구성 방식(여정/모듈/에픽 하이브리드), ④페르소나(취향 3종/여정 2종/+운영자/단일), ⑤수용 기준 형식(체크리스트/GWT/혼합), ⑥우선순위 표기(단계 태그/MoSCoW/P1-P3)). 답변 대기 게이트 진입."
+**Context**: INCEPTION - User Stories Part 1, ⛔ GATE: 계획 질문 답변 대기
+
+---
+
+## User Stories — 계획 답변 수신·분석·승인
+**Timestamp**: 2026-07-04T02:00:00Z
+**User Input**: "완료"
+**AI Response**: "story-generation-plan.md 답변 6/6 확인 — 전부 A(권장안): ①전체 수록+단계 태깅, ②표준 형식 전면 재작성, ③사용자 여정 기반 구성, ④취향 축 페르소나 3종, ⑤체크리스트형 수용 기준, ⑥단계 태그만. 모호성 분석 결과 이상 없음(전 문항 단일 선택지, 상충 없음). 제시된 계획의 권장안과 완전 일치하므로 답변 완료를 계획 승인으로 처리하고 Part 2 생성 시작 — 에픽 12개(여정 순서 E1~E9 + 후속 E10~E12), PRD 120 스토리 + 신규 N1~N6·N8 재작성을 병렬 에이전트 5개에 분배."
+**Context**: INCEPTION - User Stories Part 1 완료 → Part 2 Generation 진행
+
+---
+
+## User Stories — Part 2 Generation 완료 · 승인 요청
+**Timestamp**: 2026-07-04T02:40:00Z
+**User Input**: (없음 — Part 2 연속 실행)
+**AI Response**: "산출물 2종 생성 완료. (1) personas.md — 취향 축 3원형(P1 지유 꼼꼼 계획형·P2 민준 균형 실속형·P3 하람 즉흥 유연형)+운영자, 페르소나×에픽 매핑 표. (2) stories.md — 총 128 스토리(1차 102·후속 26), 여정 순 에픽 12개(E1 온보딩 18, E2 앱셸 6, E3 숙소 11, E4 여행생성 11, E5 일정생성 12, E6 현장실행 3, E7 Plan-B 13, E8 기록회고 14, E9 알림설정 14, E10 어시스턴트 8, E11 커뮤니티 10, E12 공동편집 8). PRD 120 스토리 전면 재작성(As a/I want/So that + 체크리스트 수용 기준 + PRD·결정 양방향 참조) + 신규 8 스토리(N1~N6·N8·운영자). 검증: 태그 누락 0, ID 중복 0, 1:1 대응 확인. 병렬 에이전트 5개로 작성. 승인 프롬프트 제시 — 승인 시 Workflow Planning 진행."
+**Context**: INCEPTION - User Stories Step 20, ⛔ 생성 결과 승인 대기
+
+---
+
+## 사용자 문의 — 다음 할 일
+**Timestamp**: 2026-07-04T03:00:00Z
+**User Input**: "이제 뭐해야해?"
+**AI Response**: "stories.md·personas.md 검토 후 승인 또는 수정 요청 안내. 승인 대기 상태 유지."
+**Context**: INCEPTION - User Stories, ⛔ 생성 결과 승인 대기 (변동 없음)
+
+---
+
+## User Stories — 생성 결과 승인
+**Timestamp**: 2026-07-04T03:20:00Z
+**User Input**: "승인"
+**AI Response**: "stories.md(128 스토리)·personas.md 승인 접수 — User Stories 단계 완료 처리. Workflow Planning 단계 진입."
+**Context**: INCEPTION - User Stories 완료 → Workflow Planning 진입
+
+---
+
+## Workflow Planning — 실행 계획 생성 · 승인 요청
+**Timestamp**: 2026-07-04T03:50:00Z
+**User Input**: (없음 — 단계 연속 실행)
+**AI Response**: "inception/plans/execution-plan.md 생성. 판정: 잔여 전 단계 EXECUTE, 스킵 없음 — Application Design(모듈 18개 계약·상태 머신·LLM+솔버 인터페이스 미정의), Units Generation(102 스토리 유닛 분해 필요), 유닛별 Functional Design·NFR Requirements·NFR Design·Infrastructure Design·Code Generation, Build and Test. 리스크 High(그린필드 시스템 전반+LLM 불확실성+법규)/롤백 Easy/테스트 Complex. Mermaid 워크플로 시각화(문법 검증 완료)+텍스트 대안 포함. 승인 프롬프트 제시 — 승인 시 Application Design 진행."
+**Context**: INCEPTION - Workflow Planning Step 9, ⛔ 승인 대기
+
+---
+
+## Workflow Planning — 승인 · 연속 진행 지시
+**Timestamp**: 2026-07-04T04:10:00Z
+**User Input**: "남은거 진행해 플랜 사용량 한도 확인하면서"
+**AI Response**: "실행 계획 승인 접수 + 잔여 단계 연속 진행 지시로 해석. 사용량 절약을 위해 에이전트 팬아웃 없이 직접·압축 작성 방식 채택(사용자 플랜 사용량은 AI가 직접 조회 불가 — /usage 안내). 인셉션 잔여 2단계(Application Design → Units Generation)를 연속 실행하고 컨스트럭션 진입 전 묶음 검토로 게이트 통합(사용자 지시에 따른 게이트 간소화)."
+**Context**: INCEPTION - Workflow Planning 완료 → Application Design 진입
+
+---
+
+## Application Design + Units Generation — 연속 실행 완료 · 묶음 승인 요청
+**Timestamp**: 2026-07-04T05:00:00Z
+**User Input**: (없음 — "남은거 진행해" 지시의 연속 실행)
+**AI Response**: "사용량 절약을 위해 에이전트 없이 직접 작성. [Application Design] plans/application-design-plan.md(설계 결정 AD-1~5: 모듈 경계=PRD 17+M18+공통 C1~C3, 레이어드 내부 구조·어댑터 격리, 퍼사드+도메인 이벤트 통신, 클라이언트 feature 구조, 시그니처 수준) + application-design/ 4종(components.md 21개 컴포넌트, component-methods.md 핵심 메서드, services.md 플로우 6종·이벤트·잡, component-dependency.md 매트릭스·순환 없음). [Units Generation] plans/unit-of-work-plan.md(UW-1~4: 에픽=유닛 정렬·E6+E7 통합, 단일 배포, 모노레포 코드 조직, 순차 시퀀스) + unit-of-work.md(1차 U1~U8 + 후속 U9~U11), unit-of-work-dependency.md(순차 의존·계약 포인트 5), unit-of-work-story-map.md(128/128 전수 매핑). 질문 게이트는 사용자 연속 진행 지시에 따라 기본값 채택+묶음 검토로 통합. 승인 프롬프트 제시 — 승인 시 CONSTRUCTION U1(기반·계정·온보딩) 진입."
+**Context**: INCEPTION - Application Design·Units Generation 완료, ⛔ 묶음 승인 대기
+
+---
+
+## Application Design + Units Generation — 재실행 지시 (심화 재작성)
+**Timestamp**: 2026-07-04T05:30:00Z
+**User Input**: "인셉션 잔여 2단계를 연속 실행했습니다 (토큰 절약을 위해 에이전트 없이 직접·압축 작성). -> 이거 토큰 절약 생각하지말고 다시해봐"
+**AI Response**: "토큰 절약 제약 해제 — Application Design 4종(components·component-methods·services·component-dependency)과 Units Generation 3종(unit-of-work·dependency·story-map)을 산출물별 전담 에이전트 5개 병렬로 전면 심화 재작성. 완료 후 application-design.md 통합본 재구성, 기존 압축본은 덮어쓰기."
+**Context**: INCEPTION - Application Design·Units Generation 재실행 (Part 2 재생성)
+
+---
+
+## Application Design + Units Generation — 심화 재작성 완료 (중단 1회 포함)
+**Timestamp**: 2026-07-04T07:00:00Z
+**User Input**: "이어서해라" (플랜 세션 한도 도달로 에이전트 4개 중단 후 재개 지시)
+**AI Response**: "한도 중단 시점 점검 결과 components.md(1,024줄)·component-methods.md(764줄)·unit-of-work.md(684줄)·component-dependency.md(619줄)·services.md(434줄)는 중단 전 기록 완료(완결성 tail 검증). 잔여 2개(unit-of-work-dependency.md 227줄 — CP1~CP5 필드 수준 계약·통합 시나리오, unit-of-work-story-map.md 219줄 — 128행 개별 매핑·검증 128/128 누락 0 중복 0) 에이전트 재실행으로 완료. application-design.md 통합본 재구성. 주요 심화 내용: 상태 머신 정본 3종, 트랜잭셔널 아웃박스·성능 예산 배분, 의존 각주 61개·초안 보정 2건(M1↔M2·M6↔M4 순환 해소), 스토리 커버리지 102/102, 유닛별 DoD·리스크·선결 과제 연결. 묶음 승인 프롬프트 재제시."
+**Context**: INCEPTION - Application Design·Units Generation 심화 완료, ⛔ 묶음 승인 대기
+
+---
+
+## Application Design + Units Generation 승인 — INCEPTION 완료 · CONSTRUCTION 진입
+**Timestamp**: 2026-07-04T07:30:00Z
+**User Input**: "이어서 ㄱㄱ"
+**AI Response**: "묶음 승인 접수 — INCEPTION 페이즈 전체 완료 (Workspace Detection → Requirements → User Stories → Workflow Planning → Application Design → Units Generation). CONSTRUCTION 페이즈 U1(기반·계정·온보딩, E1 18 스토리) 진입. 기존 연속 진행 지시에 따라 U1의 설계 4단계(Functional Design→NFR Requirements→NFR Design→Infrastructure Design)를 연속 실행하고 Code Generation 착수 전 묶음 게이트로 통합."
+**Context**: CONSTRUCTION - U1 Per-Unit Loop 시작
+
+---
+
+## U1 — Functional Design·NFR Requirements 착수 + 전역 결정 질문 생성
+**Timestamp**: 2026-07-04T07:50:00Z
+**User Input**: (없음 — 연속 실행)
+**AI Response**: "U1 Functional Design(도메인 엔티티·비즈니스 규칙·로직 모델·PBT 속성 식별·프론트 컴포넌트 5종)과 NFR Requirements(NFR 전개·기술 스택 구체화 3종) 에이전트 2개 병렬 착수. NFR Design·Infrastructure Design은 Resiliency Baseline이 사용자 결정으로 지정한 항목이 있어 질문 파일 생성 — construction/plans/u1-nfr-infra-questions.md 7문항(①클라우드 벤더 ②변경 관리 RESILIENCY-03 ③CI/CD ④롤백 ⑤배포 스타일 RESILIENCY-04 ⑥인시던트 대응 RESILIENCY-15 ⑦복원력 테스트 RESILIENCY-14). 프로젝트 전역 결정으로 U2~U8 재사용."
+**Context**: CONSTRUCTION - U1, ⛔ 전역 질문 답변 대기 (설계 에이전트는 병렬 진행 중)
+
+---
+
+## U1 — 전역 결정 7문항 답변 수신 · NFR Design/Infrastructure Design 착수
+**Timestamp**: 2026-07-04T09:00:00Z
+**User Input**: "다 함ㄱㄱ"
+**AI Response**: "u1-nfr-infra-questions.md 7문항 전부 A 확인 — ①AWS ②경량 변경 관리 제안(RESILIENCY-03) ③GitHub Actions ④버전 고정 재배포 롤백+forward-only 마이그레이션 ⑤롤링 배포 ⑥경량 인시던트 대응 제안(RESILIENCY-15) ⑦복원력 테스트 Operations 이연(RESILIENCY-14). 모호성 없음. 이 결정은 전역(U1~U8 재사용). Functional Design(1,230줄·PBT 속성 17)·NFR Requirements(474줄) 완료 상태에서 NFR Design·Infrastructure Design 에이전트 2개 병렬 착수 — Infrastructure Design은 U1이 기반 유닛이므로 shared-infrastructure.md(AWS 공유 인프라 정본)도 생성."
+**Context**: CONSTRUCTION - U1 NFR Design·Infrastructure Design 진행
+
+---
+
+## U1 — 설계 4단계 완료 · Code Generation 게이트 제시
+**Timestamp**: 2026-07-04T10:30:00Z
+**User Input**: (없음 — 연속 실행 완료)
+**AI Response**: "U1 설계 산출물 전체 완료(총 ~2,900줄): Functional Design 5종(PBT 속성 17), NFR Requirements 3종, NFR Design 3종(패턴 16·LC-10·OPS 정본 3 — RESILIENCY-03/04/14/15 컴플라이언스 해소·차단 소견 없음), Infrastructure Design 4종(shared-infrastructure.md 공유 정본 포함 — ECS Fargate·Terraform·RDS Multi-AZ·법정 로그 PG append-only, PD-1~9 전건 종결). 확장 컴플라이언스: 해당 규칙 비차단·N/A 판정 완료. 표준 2옵션 게이트 제시 — 승인 시 U1 Code Generation Part 1(계획) 진입."
+**Context**: CONSTRUCTION - U1, ⛔ Code Generation 진입 승인 대기
+
+---
