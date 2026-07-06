@@ -100,7 +100,7 @@
 | **기상청 공공데이터포털** | 날씨 소스. 단기예보(강수확률)+기상특보를 수집해 Plan-B 트리거 (a)에 쓴다(D10). 무응답 시 트리거 침묵(허위 알림 금지)로 폴백한다. | [infrastructure.md](infrastructure.md) · [units/u6-execution.md](units/u6-execution.md) |
 | **아웃바운드 클릭 (제휴 링크)** | OTA 딥링크로 나가는 이탈을 내부 집계 전용으로 기록하는 지표(M5). 사용자·LLM 컨텍스트에 노출하지 않으며(SECURITY-11), 제휴 수수료 고지와 복귀 핸드오프 판단에 쓴다. | [flows.md](flows.md) · [units/u3-place-stay.md](units/u3-place-stay.md) |
 | **지도 API 약관 (캐싱 정책)** | 국내 지도 API는 영구 캐싱 금지·실시간 호출·출처 표기가 요구된다(ADR-0017). 그래서 탐색·추천 풀은 TTL 캐시로, 사용자 확정분만 스냅샷으로 저장한다(D13). 약관 적합성 법무 확인은 선결 과제(P2). | [decisions.md](decisions.md) · [nfr.md](nfr.md) |
-| **카카오 / TMap / 네이버** | 지도·장소 스택. 카카오=장소 검색·지오코딩(1차), TMap=도로 거리, 네이버=2차 폴백(D08). Port/Adapter로 격리해 벤더 비종속을 유지한다. | [infrastructure.md](infrastructure.md) · [architecture.md](architecture.md) |
+| **카카오 / 카카오모빌리티 / 네이버** | 지도·장소 스택. 카카오=장소 검색·지오코딩(1차), 카카오모빌리티=도로 거리, 네이버=2차 폴백(D08). Port/Adapter로 격리해 벤더 비종속을 유지한다. | [infrastructure.md](infrastructure.md) · [architecture.md](architecture.md) |
 | **기상청·TourAPI·OTA 등 데이터 규약** | 공공 소스(TourAPI 등 캐싱 허용)는 정본 캐시로, 상업 소스는 약관 최소치로만 호출한다. 전 외부 호출은 타임아웃+서킷 브레이커+폴백을 갖춘다(ADR-0011). | [infrastructure.md](infrastructure.md) · [decisions.md](decisions.md) |
 | **FCM (Firebase Cloud Messaging)** | 단일 푸시 채널(iOS 포함, D12). 모든 알림은 서버 스케줄링으로 발송하고, 인앱 알림함(자체 DB, 90일 보존)을 항상 선(先) 적재해 푸시 실패 시에도 관측 가능하게 한다. | [infrastructure.md](infrastructure.md) · [units/u8-notification.md](units/u8-notification.md) |
 | **OTA (Online Travel Agency)** | 외부 여행/숙소 예약 사업자. TripPilot은 실거래(예약·결제·재고)를 보유하지 않고 OTA에 위임한다(ADR-0003·0012). 국내 OTA 크롤링 금지, 리뷰·평점 미표시. | [scope.md](scope.md) · [units/u3-place-stay.md](units/u3-place-stay.md) |
